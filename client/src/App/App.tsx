@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 import { Switch, Route } from 'react-router-dom';
-import HomeScreen from '../screens/HomeScreen/HomeScreen';
+import HomeScreen from '../pages/HomeScreen/HomeScreen';
 
 function App() {
   return (

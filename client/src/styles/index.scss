@@ -1,1 +1,5 @@
-@import '../screens/HomeScreen/styles.scss';
+@import './base/base';
+
+@import '../pages/HomeScreen/styles.scss';
+@import '../components/MenuItem/styles.scss';
+@import '../components/Directory/styles.scss';
