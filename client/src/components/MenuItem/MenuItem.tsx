@@ -1,5 +1,4 @@
 import React from 'react';
-import { History } from 'history';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
 interface MenuItemProps extends RouteComponentProps {

@@ -1,7 +1,7 @@
 import React from 'react';
 import Direcotry from '../../components/Directory/Direcotry';
 
-const HomeScreen = () => {
+const HomePage = () => {
   return (
     <div className='homepage'>
       <Direcotry />
@@ -9,4 +9,4 @@ const HomeScreen = () => {
   );
 };
 
-export default HomeScreen;
+export default HomePage;
