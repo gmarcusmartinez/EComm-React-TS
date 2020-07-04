@@ -2,13 +2,10 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../../store/actions/cart';
 import CustomButton from '../CustomButton/CustomButton';
+import { IProduct } from '../../interfaces';
 
 interface CollectionItemProps {
-  item: {
-    name: string;
-    price: number;
-    imageUrl: string;
-  };
+  item: IProduct;
   addItem: Function;
 }
 

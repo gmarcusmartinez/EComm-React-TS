@@ -1,11 +1,9 @@
 import React from 'react';
 import CollectionItem from '../CollectionItem/CollectionItem';
+import { ICollection } from '../../interfaces';
 
 interface PreviewCollectionProps {
-  collection: {
-    title: string;
-    items: any[];
-  };
+  collection: ICollection;
 }
 
 const PreviewCollection: React.FC<PreviewCollectionProps> = ({
