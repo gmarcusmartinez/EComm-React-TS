@@ -11,6 +11,7 @@ export const passwordMatchError = (pw: string, confirm: string) => {
     return;
   }
 };
+
 export const fields = [
   {
     type: 'text',
