@@ -1,7 +1,7 @@
 import React from 'react';
 import FormInput from '../FormInput/FormInput';
 import CustomButton from '../CustomButton/CustomButton';
-import { signinWithGoogle } from '../../firebase/firebase.utils';
+import { auth, signinWithGoogle } from '../../firebase/firebase.utils';
 
 const defaultFormState = { email: '', password: '' };
 
@@ -15,12 +15,18 @@ const Signin = () => {
       [name]: value,
     });
   };
-  const handleSubmit = (e: any) => {
+  const { email, password } = formData;
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setFormData(defaultFormState);
+    try {
+      await auth.signInWithEmailAndPassword(email, password);
+      setFormData(defaultFormState);
+    } catch (error) {
+      console.log(error.message);
+    }
   };
 
-  const { email, password } = formData;
   return (
     <div className='sign-in'>
       <h2>I already have an account</h2>

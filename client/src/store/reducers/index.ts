@@ -1,4 +1,4 @@
 import { combineReducers } from 'redux';
+import { user } from './user';
 
-const test = () => 'test';
-export const rootReducer = combineReducers({ test });
+export const rootReducer = combineReducers({ user });
