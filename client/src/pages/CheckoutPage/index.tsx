@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
+
+import { ICartItem } from 'interfaces';
 import { headerBlocks } from './helpers';
-import { ICartItem } from '../../interfaces';
-import { selectCartItems, selectCartTotal } from '../../store/selectors/cart';
-import CheckoutItem from '../../components/CheckoutItem/CheckoutItem';
+import StripeCheckoutBtn from 'components/StripeButton';
+import CheckoutItem from 'components/CheckoutItem';
+import { selectCartItems, selectCartTotal } from 'store/selectors/cart';
 
 interface CheckoutPageProps {
   cartItems: ICartItem[];
@@ -27,6 +29,7 @@ const CheckoutPage: React.FC<CheckoutPageProps> = ({ cartItems, total }) => {
       <div className='total'>
         <span>TOTAL: ${total}</span>
       </div>
+      <StripeCheckoutBtn price={total} />
     </div>
   );
 };

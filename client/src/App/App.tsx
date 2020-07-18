@@ -3,14 +3,11 @@ import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { setCurrentUser } from '../store/actions/user';
-import Header from '../components/Header/Header';
-import HomePage from '../pages/HomePage/HomePage';
-import ShopPage from '../pages/ShopPage/ShopPage';
-import AuthPage from '../pages/AuthPage/AuthPage';
-import { auth, createUserProfileDocument } from '../firebase/firebase.utils';
-import { selectCurrentUser } from '../store/selectors/user';
-import CheckoutPage from '../pages/CheckoutPage/CheckoutPage';
+import Header from 'components/Header';
+import * as pages from 'pages';
+import AuthPage from 'pages/AuthPage';
+import { setCurrentUser } from 'store/actions/user';
+import { selectCurrentUser } from 'store/selectors/user';
 
 interface AppProps {
   setCurrentUser: Function;
@@ -18,33 +15,15 @@ interface AppProps {
 }
 
 const App: React.FC<AppProps> = ({ setCurrentUser, currentUser }) => {
-  React.useEffect(() => {
-    let unsubscribeFromAuth = auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const userRef = await createUserProfileDocument(user);
-        userRef?.onSnapshot((snapShot) => {
-          setCurrentUser({
-            id: snapShot.id,
-            ...snapShot.data(),
-          });
-        });
-      }
-      setCurrentUser(user);
-    });
-    return () => {
-      unsubscribeFromAuth();
-    };
-  }, [setCurrentUser]);
-
   const redirectUrl = currentUser ? <Redirect to='/' /> : <AuthPage />;
   return (
     <>
       <Header />
       <Switch>
-        <Route exact path='/' component={HomePage} />
-        <Route path='/shop' component={ShopPage} />
+        <Route exact path='/' component={pages.HomePage} />
+        <Route path='/shop' component={pages.ShopPage} />
         <Route path='/signin' render={() => redirectUrl} />
-        <Route path='/checkout' component={CheckoutPage} />
+        <Route path='/checkout' component={pages.CheckoutPage} />
       </Switch>
     </>
   );

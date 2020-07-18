@@ -1,23 +1,19 @@
 import React from 'react';
-import { ICartItem } from '../../interfaces';
+import { ICartItem } from 'interfaces';
 import { connect } from 'react-redux';
-import {
-  clearItemFromCart,
-  addItem,
-  removeItem,
-} from '../../store/actions/cart';
+import { clearItemFromCart, addItem, removeItem } from 'store/actions/cart';
 
-interface CheckoutItemProps {
+interface IProps {
+  addItem: Function;
   cartItem: ICartItem;
   clearItemFromCart: Function;
-  addItem: Function;
   removeItem: Function;
 }
 
-const CheckoutItem: React.FC<CheckoutItemProps> = ({
+const CheckoutItem: React.FC<IProps> = ({
+  addItem,
   cartItem,
   clearItemFromCart,
-  addItem,
   removeItem,
 }) => {
   const { imageUrl, name, price, quantity } = cartItem;

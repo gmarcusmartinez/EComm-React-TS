@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 
-interface MenuItemProps extends RouteComponentProps {
+interface IProps extends RouteComponentProps {
   section: {
     title: string;
     imageUrl: string;
@@ -10,7 +10,7 @@ interface MenuItemProps extends RouteComponentProps {
   };
 }
 
-const MenuItem: React.SFC<MenuItemProps> = ({
+const MenuItem: React.SFC<IProps> = ({
   section: { title, imageUrl, size, linkUrl },
   history,
   match,

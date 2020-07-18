@@ -1,8 +1,8 @@
 import {
-  TOGGLE_CART_HIDDEN,
   ADD_ITEM,
-  CLEAR_ITEM_FROM_CART,
   REMOVE_ITEM,
+  TOGGLE_CART_HIDDEN,
+  CLEAR_ITEM_FROM_CART,
 } from './types';
 import { ICartItem } from '../../interfaces';
 

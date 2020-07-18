@@ -1,11 +1,17 @@
 import React from 'react';
-import FormInput from '../FormInput/FormInput';
-import CustomButton from '../CustomButton/CustomButton';
-import { auth, signinWithGoogle } from '../../firebase/firebase.utils';
+import { connect } from 'react-redux';
+
+import FormInput from 'components/FormInput';
+import CustomButton from 'components/CustomButton';
+import { auth } from 'firebase/firebase.utils';
+import { googleSigninStart } from 'store/actions/user';
 
 const defaultFormState = { email: '', password: '' };
+interface IProps {
+  googleSigninStart: Function;
+}
 
-const Signin = () => {
+const Signin: React.FC<IProps> = ({ googleSigninStart }) => {
   const [formData, setFormData] = React.useState(defaultFormState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -45,7 +51,11 @@ const Signin = () => {
         />
         <div className='buttons'>
           <CustomButton>Sign In</CustomButton>
-          <CustomButton onClick={signinWithGoogle} isGoogleSignIn>
+          <CustomButton
+            type='button'
+            onClick={googleSigninStart}
+            isGoogleSignIn
+          >
             Sign In with Google
           </CustomButton>
         </div>
@@ -54,4 +64,4 @@ const Signin = () => {
   );
 };
 
-export default Signin;
+export default connect(null, { googleSigninStart })(Signin);

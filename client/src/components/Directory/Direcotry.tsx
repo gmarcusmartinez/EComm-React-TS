@@ -1,9 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import MenuItem from '../MenuItem/MenuItem';
 import { createStructuredSelector } from 'reselect';
-import { ISection } from '../../interfaces';
-import { selectDirectorySections } from '../../store/selectors/directory';
+
+import MenuItem from 'components/MenuItem';
+import { ISection } from 'interfaces';
+import { selectDirectorySections } from 'store/selectors/directory';
 
 interface DirecotryProps {
   sections: ISection[];

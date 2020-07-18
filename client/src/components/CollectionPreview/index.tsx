@@ -1,14 +1,13 @@
 import React from 'react';
-import CollectionItem from '../CollectionItem/CollectionItem';
-import { ICollection } from '../../interfaces';
+import { ICollection } from 'interfaces';
+import CollectionItem from 'components/CollectionItem';
 
-interface PreviewCollectionProps {
+interface IProps {
   collection: ICollection;
 }
 
-const PreviewCollection: React.FC<PreviewCollectionProps> = ({
-  collection: { title, items },
-}) => {
+const CollectionPreview: React.FC<IProps> = ({ collection }) => {
+  const { items, title } = collection;
   let list = items
     .filter((item, i) => i < 4)
     .map((item) => <CollectionItem key={item.id} item={item} />);
@@ -21,4 +20,4 @@ const PreviewCollection: React.FC<PreviewCollectionProps> = ({
   );
 };
 
-export default PreviewCollection;
+export default CollectionPreview;

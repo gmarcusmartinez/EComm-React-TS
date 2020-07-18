@@ -1,6 +1,6 @@
 import React from 'react';
-import FormInput from '../FormInput/FormInput';
-import CustomButton from '../CustomButton/CustomButton';
+import FormInput from '../FormInput';
+import CustomButton from '../CustomButton';
 import { defaultFormState, passwordMatchError, fields } from './helpers';
 import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
 

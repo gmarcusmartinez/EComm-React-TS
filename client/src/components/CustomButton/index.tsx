@@ -4,12 +4,14 @@ interface CustomButtonProps {
   onClick?: any;
   isGoogleSignIn?: boolean;
   inverted?: boolean;
+  type?: string;
 }
 
 const CustomButton: React.FC<CustomButtonProps> = ({
   children,
   isGoogleSignIn,
   inverted,
+  type,
   ...props
 }) => {
   return (
@@ -18,7 +20,7 @@ const CustomButton: React.FC<CustomButtonProps> = ({
       ${inverted ? 'inverted' : ''}
       ${isGoogleSignIn ? 'google-sign-in' : ''} custom-button`}
       {...props}
-      type='submit'
+      type={type ? 'button' : 'submit'}
     >
       {children}
     </button>

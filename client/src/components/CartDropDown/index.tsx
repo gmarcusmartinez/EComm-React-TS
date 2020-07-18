@@ -3,17 +3,17 @@ import { connect } from 'react-redux';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import CartItem from '../CartItem/CartItem';
-import { ICartItem } from '../../interfaces';
-import CustomButton from '../CustomButton/CustomButton';
-import { toggleCartHidden } from '../../store/actions/cart';
-import { selectCartItems } from '../../store/selectors/cart';
+import { ICartItem } from 'interfaces';
+import CartItem from 'components/CartItem';
+import CustomButton from 'components/CustomButton';
+import { toggleCartHidden } from 'store/actions/cart';
+import { selectCartItems } from 'store/selectors/cart';
 
-interface CartDropDownProps extends RouteComponentProps {
+interface IProps extends RouteComponentProps {
   cartItems: ICartItem[];
   toggleCartHidden: Function;
 }
-const CartDropDown: React.FC<CartDropDownProps> = ({
+const CartDropDown: React.FC<IProps> = ({
   cartItems,
   history,
   toggleCartHidden,

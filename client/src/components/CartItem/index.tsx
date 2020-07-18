@@ -1,11 +1,11 @@
 import React from 'react';
-import { ICartItem } from '../../interfaces';
+import { ICartItem } from 'interfaces';
 
-interface CartItemProps {
+interface IProps {
   item: ICartItem;
 }
 
-const CartItem: React.FC<CartItemProps> = ({ item }) => {
+const CartItem: React.FC<IProps> = ({ item }) => {
   const { imageUrl, price, name, quantity } = item;
   return (
     <div className='cart-item'>

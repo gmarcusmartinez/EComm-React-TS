@@ -3,19 +3,19 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { createStructuredSelector } from 'reselect';
 
-import CartIcon from '../CartIcon/CartIcon';
-import { auth } from '../../firebase/firebase.utils';
-import CartDropDown from '../CartDropDown/CartDropDown';
-import { selectCartHidden } from '../../store/selectors/cart';
-import { selectCurrentUser } from '../../store/selectors/user';
-import { ReactComponent as Logo } from '../../assets/crown.svg';
+import { ReactComponent as Logo } from 'assets/crown.svg';
+import CartDropDown from 'components/CartDropDown';
+import CartIcon from 'components/CartIcon';
+import { auth } from 'firebase/firebase.utils';
+import { selectCartHidden } from 'store/selectors/cart';
+import { selectCurrentUser } from 'store/selectors/user';
 
-interface HeaderProps {
+interface IProps {
   currentUser: any;
   hidden: boolean;
 }
 
-const Header: React.FC<HeaderProps> = ({ currentUser, hidden }) => {
+const Header: React.FC<IProps> = ({ currentUser, hidden }) => {
   const renderSignoutBtn = () =>
     currentUser ? (
       <div className='option' onClick={() => auth.signOut()}>

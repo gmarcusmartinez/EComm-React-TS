@@ -1,15 +1,16 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { addItem } from '../../store/actions/cart';
-import CustomButton from '../CustomButton/CustomButton';
-import { IProduct } from '../../interfaces';
 
-interface CollectionItemProps {
+import CustomButton from 'components/CustomButton';
+import { IProduct } from 'interfaces';
+import { addItem } from 'store/actions/cart';
+
+interface IProps {
   item: IProduct;
   addItem: Function;
 }
 
-const CollectionItem: React.FC<CollectionItemProps> = ({ item, addItem }) => {
+const CollectionItem: React.FC<IProps> = ({ item, addItem }) => {
   const { name, price, imageUrl } = item;
   return (
     <div className='collection-item'>

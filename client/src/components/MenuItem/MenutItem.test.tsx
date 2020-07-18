@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import MenuItem from './MenuItem';
+import MenuItem from '.';
 
 const mockSection = {
   title: 'hats',

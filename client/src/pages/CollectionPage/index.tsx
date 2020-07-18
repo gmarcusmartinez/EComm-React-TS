@@ -4,7 +4,7 @@ import { RouteComponentProps } from 'react-router-dom';
 
 import { ICollection } from '../../interfaces';
 import { selectCollection } from '../../store/selectors/shop';
-import CollectionItem from '../../components/CollectionItem/CollectionItem';
+import CollectionItem from '../../components/CollectionItem';
 
 interface CollectionPageProps extends RouteComponentProps {
   collection: ICollection;
