@@ -22,3 +22,8 @@ export interface ISection {
   linkUrl: string;
   imageUrl: string;
 }
+
+export interface IEamilSigninFormData {
+  email: string;
+  password: string;
+}

@@ -1,5 +1,5 @@
 import React from 'react';
-import Direcotry from 'components/Directory/Direcotry';
+import Direcotry from 'components/Directory';
 
 const HomePage = () => {
   return (

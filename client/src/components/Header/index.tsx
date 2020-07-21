@@ -6,19 +6,19 @@ import { createStructuredSelector } from 'reselect';
 import { ReactComponent as Logo } from 'assets/crown.svg';
 import CartDropDown from 'components/CartDropDown';
 import CartIcon from 'components/CartIcon';
-import { auth } from 'firebase/firebase.utils';
 import { selectCartHidden } from 'store/selectors/cart';
 import { selectCurrentUser } from 'store/selectors/user';
-
+import { signoutStart } from 'store/actions/user';
 interface IProps {
+  signoutStart: Function;
   currentUser: any;
   hidden: boolean;
 }
 
-const Header: React.FC<IProps> = ({ currentUser, hidden }) => {
+const Header: React.FC<IProps> = ({ currentUser, hidden, signoutStart }) => {
   const renderSignoutBtn = () =>
     currentUser ? (
-      <div className='option' onClick={() => auth.signOut()}>
+      <div className='option' onClick={() => signoutStart()}>
         SIGNOUT
       </div>
     ) : (
@@ -52,4 +52,4 @@ const mapStateToProps = createStructuredSelector({
   hidden: selectCartHidden,
 });
 
-export default connect(mapStateToProps, {})(Header);
+export default connect(mapStateToProps, { signoutStart })(Header);

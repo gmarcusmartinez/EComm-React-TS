@@ -1,12 +1,16 @@
 import React from 'react';
-import FormInput from '../FormInput';
-import CustomButton from '../CustomButton';
+import { connect } from 'react-redux';
+import FormInput from 'components/FormInput';
+import CustomButton from 'components/CustomButton';
 import { defaultFormState, passwordMatchError, fields } from './helpers';
-import { auth, createUserProfileDocument } from '../../firebase/firebase.utils';
+import { signupStart } from 'store/actions/user';
 
-const Signup = () => {
+interface IProps {
+  signupStart: Function;
+}
+const Signup: React.FC<IProps> = ({ signupStart }) => {
   const [formData, setFormData] = React.useState(defaultFormState);
-  const { displayName, email, password, confirmPassword } = formData;
+  const { password, confirmPassword } = formData;
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -16,17 +20,9 @@ const Signup = () => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     passwordMatchError(password, confirmPassword);
-    try {
-      const { user } = await auth.createUserWithEmailAndPassword(
-        email,
-        password
-      );
-      await createUserProfileDocument(user, { displayName });
-      setFormData(defaultFormState);
-    } catch (error) {
-      console.log(error.message);
-    }
+    signupStart(formData);
   };
+
   const formInputs = fields.map((f) => (
     <FormInput
       key={f.name}
@@ -49,4 +45,4 @@ const Signup = () => {
   );
 };
 
-export default Signup;
+export default connect(null, { signupStart })(Signup);

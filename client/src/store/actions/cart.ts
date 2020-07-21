@@ -1,26 +1,24 @@
-import {
-  ADD_ITEM,
-  REMOVE_ITEM,
-  TOGGLE_CART_HIDDEN,
-  CLEAR_ITEM_FROM_CART,
-} from './types';
+import * as ActionTypes from './types';
 import { ICartItem } from '../../interfaces';
 
 export const toggleCartHidden = () => ({
-  type: TOGGLE_CART_HIDDEN,
+  type: ActionTypes.TOGGLE_CART_HIDDEN,
 });
 
 export const addItem = (item: ICartItem) => ({
-  type: ADD_ITEM,
+  type: ActionTypes.ADD_ITEM,
   payload: item,
 });
 
 export const removeItem = (item: ICartItem) => ({
-  type: REMOVE_ITEM,
+  type: ActionTypes.REMOVE_ITEM,
   payload: item,
 });
 
 export const clearItemFromCart = (item: ICartItem) => ({
-  type: CLEAR_ITEM_FROM_CART,
+  type: ActionTypes.CLEAR_ITEM_FROM_CART,
   payload: item,
+});
+export const clearCart = () => ({
+  type: ActionTypes.CLEAR_CART,
 });

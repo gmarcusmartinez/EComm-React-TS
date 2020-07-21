@@ -3,33 +3,28 @@ import { connect } from 'react-redux';
 
 import FormInput from 'components/FormInput';
 import CustomButton from 'components/CustomButton';
-import { auth } from 'firebase/firebase.utils';
-import { googleSigninStart } from 'store/actions/user';
+import { googleSigninStart, emailSigninStart } from 'store/actions/user';
 
-const defaultFormState = { email: '', password: '' };
 interface IProps {
+  emailSigninStart: Function;
   googleSigninStart: Function;
 }
 
-const Signin: React.FC<IProps> = ({ googleSigninStart }) => {
+const Signin: React.FC<IProps> = ({ emailSigninStart, googleSigninStart }) => {
+  const defaultFormState = { email: '', password: '' };
   const [formData, setFormData] = React.useState(defaultFormState);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-  const { email, password } = formData;
 
-  const handleSubmit = async (e: any) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    try {
-      await auth.signInWithEmailAndPassword(email, password);
-      setFormData(defaultFormState);
-    } catch (error) {
-      console.log(error.message);
-    }
+    emailSigninStart(formData);
   };
 
+  const { email, password } = formData;
   return (
     <div className='sign-in'>
       <h2>I already have an account</h2>
@@ -64,4 +59,4 @@ const Signin: React.FC<IProps> = ({ googleSigninStart }) => {
   );
 };
 
-export default connect(null, { googleSigninStart })(Signin);
+export default connect(null, { emailSigninStart, googleSigninStart })(Signin);

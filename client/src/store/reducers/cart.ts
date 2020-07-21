@@ -3,6 +3,7 @@ import {
   ADD_ITEM,
   REMOVE_ITEM,
   CLEAR_ITEM_FROM_CART,
+  CLEAR_CART,
 } from '../actions/types';
 import { addItemToCart, removeItemFromCart } from '../../utils';
 import { ICartItem } from '../../interfaces';
@@ -38,6 +39,11 @@ export const cart = (state = INITIAL_STATE, action: any) => {
         cartItems: state.cartItems.filter(
           (c: ICartItem) => c.id !== payload.id
         ),
+      };
+    case CLEAR_CART:
+      return {
+        ...state,
+        cartItems: [],
       };
     default:
       return state;

@@ -6,16 +6,19 @@ import { Switch, Route, Redirect } from 'react-router-dom';
 import Header from 'components/Header';
 import * as pages from 'pages';
 import AuthPage from 'pages/AuthPage';
-import { setCurrentUser } from 'store/actions/user';
 import { selectCurrentUser } from 'store/selectors/user';
+import { checkUserSession } from 'store/actions/user';
 
 interface AppProps {
-  setCurrentUser: Function;
+  checkUserSession: Function;
   currentUser: any;
 }
 
-const App: React.FC<AppProps> = ({ setCurrentUser, currentUser }) => {
+const App: React.FC<AppProps> = ({ currentUser, checkUserSession }) => {
   const redirectUrl = currentUser ? <Redirect to='/' /> : <AuthPage />;
+  React.useEffect(() => {
+    checkUserSession();
+  }, [checkUserSession]);
   return (
     <>
       <Header />
@@ -32,4 +35,4 @@ const App: React.FC<AppProps> = ({ setCurrentUser, currentUser }) => {
 const mapStateToProps = createStructuredSelector({
   currentUser: selectCurrentUser,
 });
-export default connect(mapStateToProps, { setCurrentUser })(App);
+export default connect(mapStateToProps, { checkUserSession })(App);

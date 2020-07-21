@@ -8,15 +8,21 @@ const initialState = {
 export const user = (state = initialState, action: any) => {
   const { type, payload } = action;
   switch (type) {
-    case ActionTypes.EMAIL_SIGNIN_SUCCESS:
-    case ActionTypes.GOOGLE_SIGNIN_SUCCESS:
+    case ActionTypes.SIGNIN_SUCCESS:
       return {
         ...state,
         currentUser: payload,
         error: null,
       };
-    case ActionTypes.EMAIL_SIGNIN_FAILURE:
-    case ActionTypes.GOOGLE_SIGNIN_FAILURE:
+    case ActionTypes.SINGOUT_SUCCESS:
+      return {
+        ...state,
+        currentUser: null,
+        error: null,
+      };
+    case ActionTypes.SIGNIN_FAILURE:
+    case ActionTypes.SIGNOUT_FAILURE:
+    case ActionTypes.SIGNUP_FAILURE:
       return {
         ...state,
         error: payload,
