@@ -1,13 +1,19 @@
-import React from 'react';
 import { connect } from 'react-redux';
+import React, { lazy, Suspense } from 'react';
 import { createStructuredSelector } from 'reselect';
 import { Switch, Route, Redirect } from 'react-router-dom';
 
 import Header from 'components/Header';
-import * as pages from 'pages';
-import AuthPage from 'pages/AuthPage';
-import { selectCurrentUser } from 'store/selectors/user';
+import Spinner from 'components/Spinner';
+
 import { checkUserSession } from 'store/actions/user';
+import { selectCurrentUser } from 'store/selectors/user';
+import ErrorBoundry from 'components/ErrorBoundry';
+
+const AuthPage = lazy(() => import('pages/AuthPage'));
+const HomePage = lazy(() => import('pages/HomePage'));
+const ShopPage = lazy(() => import('pages/ShopPage'));
+const CheckoutPage = lazy(() => import('pages/CheckoutPage'));
 
 interface AppProps {
   checkUserSession: Function;
@@ -23,10 +29,14 @@ const App: React.FC<AppProps> = ({ currentUser, checkUserSession }) => {
     <>
       <Header />
       <Switch>
-        <Route exact path='/' component={pages.HomePage} />
-        <Route path='/shop' component={pages.ShopPage} />
-        <Route path='/signin' render={() => redirectUrl} />
-        <Route path='/checkout' component={pages.CheckoutPage} />
+        <ErrorBoundry>
+          <Suspense fallback={<Spinner />}>
+            <Route exact path='/' component={HomePage} />
+            <Route path='/shop' component={ShopPage} />
+            <Route path='/checkout' component={CheckoutPage} />
+            <Route path='/signin' render={() => redirectUrl} />
+          </Suspense>
+        </ErrorBoundry>
       </Switch>
     </>
   );

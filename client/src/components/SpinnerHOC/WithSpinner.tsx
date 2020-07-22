@@ -1,4 +1,5 @@
 import React from 'react';
+import Spinner from 'components/Spinner';
 
 interface WithSpinnerProps {
   isLoading: boolean;
@@ -6,13 +7,7 @@ interface WithSpinnerProps {
 
 export default (WrappedComponent: any) => {
   const hocComponent: React.FC<WithSpinnerProps> = ({ isLoading, ...props }) =>
-    isLoading ? (
-      <div className='spinner-overlay'>
-        <div className='spinner-container '></div>
-      </div>
-    ) : (
-      <WrappedComponent {...props} />
-    );
+    isLoading ? <Spinner /> : <WrappedComponent {...props} />;
 
   return hocComponent;
 };
